@@ -1,3 +1,16 @@
 import numpy as np
-import matplotlib.pyplot as ply
-Floor1[184]
+import array as arr
+import random as random
+Floor1=np.empty([185])
+i=0
+while (i<=183) :
+  Floor1[i]=random.randint(1,10)
+  i=i+1
+i=0
+while (i<=183) :
+  if Floor1[i]<5:
+    Floor1[i]=1
+  else :
+    Floor1[i]=1
+print(Floor1[i])
+i=i+1
