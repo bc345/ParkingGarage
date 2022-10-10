@@ -1,16 +1,33 @@
 import numpy as np
 import array as arr
 import random as random
+
 Floor1=np.empty([185])
+Floor2=np.empty([185])
+Floor3=np.empty([185])
+Floor4=np.empty([185])
+Floor5=np.empty([185])
+Floor6=np.empty([185])
+Floor7=np.empty([185])
+
 i=0
 while (i<=183) :
   Floor1[i]=random.randint(1,10)
+  Floor2[i]=random.randint(1,10)
+  Floor3[i]=random.randint(1,10)
+  Floor4[i]=random.randint(1,10)
+  Floor5[i]=random.randint(1,10)
+  Floor6[i]=random.randint(1,10)
+  Floor7[i]=random.randint(1,10)
+
   i=i+1
 i=0
 while (i<=183) :
   if Floor1[i]<5:
     Floor1[i]=1
   else :
-    Floor1[i]=1
-print(Floor1[i])
-i=i+1
+    Floor1[i]=0
+  print("space",i,"is",Floor1[i])
+  with open("randomfile".txt,"a")as o:
+     o.write(Floor1[i])
+  i=i+1
