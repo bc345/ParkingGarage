@@ -11,7 +11,7 @@ Floor6=np.empty([185])
 Floor7=np.empty([185])
 
 i=0
-while (i<=183) :
+while (i<=184) :
   Floor1[i]=random.randint(1,10)
   Floor2[i]=random.randint(1,10)
   Floor3[i]=random.randint(1,10)
@@ -22,12 +22,17 @@ while (i<=183) :
 
   i=i+1
 i=0
-while (i<=183) :
+while (i<=184) :
   if Floor1[i]<5:
     Floor1[i]=1
   else :
     Floor1[i]=0
-  print("space",i,"is",Floor1[i])
-  with open("randomfile".txt,"a")as o:
-     o.write(Floor1[i])
+  
+
   i=i+1
+a_file = open("randomfile.txt", "w")
+Filearray1=str(Floor1)
+a_file.write(Filearray1)
+a_file.close()
+a_file = open("randomfile.txt", "r")
+content = a_file.read()
