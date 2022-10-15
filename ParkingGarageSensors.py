@@ -6,13 +6,13 @@ GPIO.setmode(GPIO.BCM)
 #set GPIO Pins
 PIN_TRIGGER1 = 18
 PIN_ECHO1 = 23
-
+#Trigger and Echo for Sensor 1
 PIN_TRIGGER2 = 25
 PIN_ECHO2 = 24
-
+#Trigger and Echo for Sensor 2
 PIN_TRIGGER3 = 6
 PIN_ECHO3 = 5
-
+#Trigger and Echo for Sensor 3
 GPIO.setwarnings(False)
 #set GPIO direction (IN / OUT)
 GPIO.setup(PIN_TRIGGER1, GPIO.OUT)
@@ -25,6 +25,7 @@ GPIO.setup(PIN_TRIGGER3, GPIO.OUT)
 GPIO.setup(PIN_ECHO3, GPIO.IN)
 
 while True:
+    #Sensor 1:
     GPIO.output(PIN_TRIGGER1, GPIO.LOW)
     print ("Waiting for sensor 1 to settle")
     time.sleep(2)
@@ -47,8 +48,9 @@ while True:
     elif (distance > 183):
         print("Parking spot is empty \n")
         time.sleep(0.01)
-        
+    #These if statements determine the range
     
+    #Sensor 2:
     GPIO.output(PIN_TRIGGER2, GPIO.LOW)
     print ("Waiting for sensor 2 to settle")
     time.sleep(2)
@@ -72,6 +74,7 @@ while True:
         print("Parking spot is empty \n")
         time.sleep(0.01)
     
+    #Sensor 3:
     GPIO.output(PIN_TRIGGER3, GPIO.LOW)
     print ("Waiting for sensor 3 to settle")
     time.sleep(2)
