@@ -41,6 +41,14 @@ while True:
     print ("Sensor 1 Distance:", distance, "cm")
     time.sleep(1)
     
+    if (distance <= 183):
+        print("Parking spot is taken \n")                                                                                                                                                                           
+        time.sleep(0.01)
+    elif (distance > 183):
+        print("Parking spot is empty \n")
+        time.sleep(0.01)
+        
+    
     GPIO.output(PIN_TRIGGER2, GPIO.LOW)
     print ("Waiting for sensor 2 to settle")
     time.sleep(2)
@@ -57,6 +65,13 @@ while True:
     print ("Sensor 2 Distance:", distance, "cm")
     time.sleep(1)
     
+    if (distance <= 183):
+        print("Parking spot is taken \n")                                                                                                                                                                           
+        time.sleep(0.01)
+    elif (distance > 183):
+        print("Parking spot is empty \n")
+        time.sleep(0.01)
+    
     GPIO.output(PIN_TRIGGER3, GPIO.LOW)
     print ("Waiting for sensor 3 to settle")
     time.sleep(2)
@@ -72,3 +87,10 @@ while True:
     distance = round(pulse_duration * 17150, 2)
     print ("Sensor 3 Distance:", distance, "cm")
     time.sleep(1)
+
+    if (distance <= 183):
+        print("Parking spot is taken \n")                                                                                                                                                                           
+        time.sleep(0.01)
+    elif (distance > 183):
+        print("Parking spot is empty \n")
+        time.sleep(0.01)
