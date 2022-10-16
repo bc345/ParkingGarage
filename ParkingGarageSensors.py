@@ -1,3 +1,7 @@
+import numpy as np
+import array as arr
+import random as random
+Floor1=np.empty([185])
 #Libraries
 import RPi.GPIO as GPIO
 import time
@@ -39,6 +43,7 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
+    floor1[0]=distance
     print ("Sensor 1 Distance:", distance, "cm")
     time.sleep(1)
     
@@ -64,6 +69,7 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
+    floor1[1]=distance
     print ("Sensor 2 Distance:", distance, "cm")
     time.sleep(1)
     
@@ -87,7 +93,8 @@ while True:
     while GPIO.input(PIN_ECHO3) == 1:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
-    distance = round(pulse_duration * 17150, 2)
+    distance= round(pulse_duration * 17150, 2)
+    floor1[2]=distance
     print ("Sensor 3 Distance:", distance, "cm")
     time.sleep(1)
 
@@ -97,3 +104,18 @@ while True:
     elif (distance > 183):
         print("Parking spot is empty \n")
         time.sleep(0.01)
+
+while (i<=184) :
+  if Floor1[i]<5:
+    Floor1[i]=1
+  else :
+    Floor1[i]=0
+  
+
+  i=i+1
+a_file = open("randomfile.txt", "w")
+Filearray1=str(Floor1)
+a_file.write(Filearray1)
+a_file.close()
+a_file = open("randomfile.txt", "r")
+content = a_file.read()
