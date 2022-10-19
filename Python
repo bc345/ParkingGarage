@@ -28,11 +28,15 @@ while (i<=184) :
   else :
     Floor1[i]=0
   
-
   i=i+1
+i=0
 a_file = open("randomfile.txt", "w")
-Filearray1=str(Floor1)
-a_file.write(Filearray1)
+while (i<=184) :
+    Filearray1= str ( int(Floor1[i]))
+    a_file.write(" ")
+    print (Floor1[i])
+    a_file.write(Filearray1)
+    i=i+1
 a_file.close()
 a_file = open("randomfile.txt", "r")
 content = a_file.read()
