@@ -1,8 +1,7 @@
 import numpy as np
 import array as arr
 import random as random
-Floor1=np.empty([5])
-
+Floor1=np.empty([185])
 #Libraries
 import RPi.GPIO as GPIO
 import time
@@ -44,17 +43,17 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    floor1[0]=distance
+    Floor1[0] = distance
     print ("Sensor 1 Distance:", distance, "cm")
     time.sleep(1)
     
     if (distance <= 183):
-        print("Parking spot is taken \n")                                                                                                                                                                           
+        print("Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Parking spot is empty \n")
+        print("Parking spot is available \n")
         time.sleep(0.01)
-    #These if statements determine the range
+    #These if statements determine the range, value of 183 is used because approx 183cm is in 6ft.
     
     #Sensor 2:
     GPIO.output(PIN_TRIGGER2, GPIO.LOW)
@@ -70,58 +69,52 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    floor1[1]=distance
+    Floor1[1] = distance
     print ("Sensor 2 Distance:", distance, "cm")
     time.sleep(1)
     
     if (distance <= 183):
-        print("Parking spot is taken \n")                                                                                                                                                                           
+        print("Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Parking spot is empty \n")
+        print("Parking spot is available \n")
         time.sleep(0.01)
     
     #Sensor 3:
-    GPIO.output(PIN_TRIGGER3, GPIO.LOW)
-    print ("Waiting for sensor 3 to settle")
-    time.sleep(2)
-    print("Calculating sensor 3 distance")
-    GPIO.output(PIN_TRIGGER3, GPIO.HIGH)
-    time.sleep(0.00001)
-    GPIO.output(PIN_TRIGGER3,GPIO.LOW)
-    while GPIO.input(PIN_ECHO3) == 0:
-        pulse_start_time = time.time()
-    while GPIO.input(PIN_ECHO3) == 1:
-        pulse_end_time = time.time()
-    pulse_duration = pulse_end_time - pulse_start_time
-    distance= round(pulse_duration * 17150, 2)
-    floor1[2]=distance
-    print ("Sensor 3 Distance:", distance, "cm")
-    time.sleep(1)
+   # GPIO.output(PIN_TRIGGER3, GPIO.LOW)
+   # print ("Waiting for sensor 3 to settle")
+   # time.sleep(2)
+   # print("Calculating sensor 3 distance")
+   # GPIO.output(PIN_TRIGGER3, GPIO.HIGH)
+   # time.sleep(0.00001)
+   # GPIO.output(PIN_TRIGGER3,GPIO.LOW)
+   # while GPIO.input(PIN_ECHO3) == 0:
+   #     pulse_start_time = time.time()
+   # while GPIO.input(PIN_ECHO3) == 1:
+   #     pulse_end_time = time.time()
+   # pulse_duration = pulse_end_time - pulse_start_time
+   # distance = round(pulse_duration * 17150, 2)
+   # print ("Sensor 3 Distance:", distance, "cm")
+   # time.sleep(1)
 
-    if (distance <= 183):
-        print("Parking spot is taken \n")                                                                                                                                                                           
-        time.sleep(0.01)
-    elif (distance > 183):
-        print("Parking spot is empty \n")
-        time.sleep(0.01)
+   # if (distance <= 183):
+   #     print("Parking spot is full \n")                                                                                                                                                                           
+  #      time.sleep(0.01)
+   # elif (distance > 183):
+  #      print("Parking spot is available \n")
+   #     time.sleep(0.01)
 
-while (i<=4) :
-  if Floor1[i]<180:
+while (i<=184):
+  if Floor1[i]<5:
     Floor1[i]=1
-  else :
+  else:
     Floor1[i]=0
   
 
   i=i+1
- a_file = open("Floor1.txt", "w")
- while (i<=4) :
-    Filearray1= str ( int(Floor1[i]))
-    a_file.write(" ")
-    print (Floor1[i])
-    a_file.write(Filearray1)
-    i=i+1
-  a_file.close()
-  a_file = open("randomfile.txt", "r")
-  content = a_file.read()
-
+a_file = open("randomfile.txt", "w")
+Filearray1=str(Floor1)
+a_file.write(Filearray1)
+a_file.close()
+a_file = open("randomfile.txt", "r")
+content = a_file.read()
