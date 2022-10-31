@@ -1,7 +1,8 @@
 import numpy as np
 import array as arr
 import random as random
-Floor1=np.empty([185])
+Floor1=np.empty([5])
+
 #Libraries
 import RPi.GPIO as GPIO
 import time
@@ -105,17 +106,22 @@ while True:
         print("Parking spot is empty \n")
         time.sleep(0.01)
 
-while (i<=184) :
-  if Floor1[i]<5:
+while (i<=4) :
+  if Floor1[i]<180:
     Floor1[i]=1
   else :
     Floor1[i]=0
   
 
   i=i+1
-a_file = open("randomfile.txt", "w")
-Filearray1=str(Floor1)
-a_file.write(Filearray1)
-a_file.close()
-a_file = open("randomfile.txt", "r")
-content = a_file.read()
+ a_file = open("Floor1.txt", "w")
+ while (i<=4) :
+    Filearray1= str ( int(Floor1[i]))
+    a_file.write(" ")
+    print (Floor1[i])
+    a_file.write(Filearray1)
+    i=i+1
+  a_file.close()
+  a_file = open("randomfile.txt", "r")
+  content = a_file.read()
+
