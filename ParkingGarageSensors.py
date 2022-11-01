@@ -2,6 +2,7 @@ import numpy as np
 import array as arr
 import random as random
 Floor1=np.empty([185])
+#Floor1=np.random.randint(low=1, high=20, size=185)
 #Libraries
 import RPi.GPIO as GPIO
 import time
@@ -17,6 +18,7 @@ PIN_ECHO2 = 24
 PIN_TRIGGER3 = 6
 PIN_ECHO3 = 5
 #Trigger and Echo for Sensor 3
+i=0
 GPIO.setwarnings(False)
 #set GPIO direction (IN / OUT)
 GPIO.setup(PIN_TRIGGER1, GPIO.OUT)
@@ -103,18 +105,20 @@ while True:
    # elif (distance > 183):
   #      print("Parking spot is available \n")
    #     time.sleep(0.01)
-
-while (i<=184):
-  if Floor1[i]<5:
-    Floor1[i]=1
-  else:
-    Floor1[i]=0
+   
+    while (i<=184):
+      if Floor1[i]<5:
+        Floor1[i]=1
+        print("wow")
+      else:
+        Floor1[i]=0
+        print("lol")
   
 
-  i=i+1
-a_file = open("randomfile.txt", "w")
-Filearray1=str(Floor1)
-a_file.write(Filearray1)
-a_file.close()
-a_file = open("randomfile.txt", "r")
-content = a_file.read()
+      i=i+1
+    a_file = open("randomfile1.txt", "w")
+    Filearray1=str(Floor1)
+    a_file.write(Filearray1)
+    a_file.close()
+    a_file = open("randomfile1.txt", "r")
+    content = a_file.read()
