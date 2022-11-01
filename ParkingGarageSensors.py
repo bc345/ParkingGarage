@@ -2,7 +2,6 @@ import numpy as np
 import array as arr
 import random as random
 Floor1=np.empty([185])
-#Floor1=np.random.randint(low=1, high=20, size=185)
 #Libraries
 import RPi.GPIO as GPIO
 import time
