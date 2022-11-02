@@ -1,0 +1,39 @@
+import numpy as np
+import array as arr
+import random as random
+from numpy import loadtxt
+i=0
+my_file = open('my_data.txt', 'r')
+floor1=np.empty([10])
+data = my_file.read()
+print(data[2])
+print(data[1])
+while(i<10):
+    print("toto")
+    if(data[i]=='0'):
+        floor1[i]=int(1)
+        print("yo")
+        
+    elif (data[i]=='1'):
+        floor1[i]=int(0)
+        print("lo")
+    elif(data[i]=='2'):
+        floor1[i]=int(2)
+        print("yo")
+        
+    elif (data[i]=='3'):
+       floor1[i]=int(3)
+       print("lo")
+    i=i+1
+print(floor1)
+j=0
+while(j<10):
+    if (floor1[j]==1):
+        print("General..........",floor1[j])
+    
+    if (floor1[j]==2):
+        print("Handicap.........",floor1[j])
+
+    if (floor1[j]==3):
+        print("Electric..........",floor1[j])
+    j=j+1
