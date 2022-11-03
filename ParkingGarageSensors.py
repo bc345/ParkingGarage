@@ -107,11 +107,10 @@ while True:
    
     while (i<=184):
       if Floor1[i]<5:
-        Floor1[i]=1
+        Floor1[i]=int(1)
         print("wow")
       else:
-        Floor1[i]=0
-        print("lol")
+        Floor1[i]=int(0)
   
 
       i=i+1
