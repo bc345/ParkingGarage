@@ -1,17 +1,8 @@
-/*
-Name:        Jason Tian
-Course ID:   ECET400
-Date:        10/06/2022
-Description:
-*/
- 
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <string>
 #include <windows.h> // contain a delay
-
-
 using namespace std;
 //enum type {empty, electric, handicapped};
 
@@ -29,11 +20,10 @@ int main()
 	ifstream level0, level1, level2, level3, level4, level5, level6, level7;
 	ofstream output; //send the data to outfile
 
-	output.open("C:/Users/Jason/Desktop/C++/ParkingGarage/ParkingGarage/output.txt");
+
 	while (flag)
 	{
-		Sleep(1000);
-		system("cls"); // clear the screen 
+		output.open("C:/Users/Jason/Desktop/C++/ParkingGarage/ParkingGarage/output.txt");
 
 		level0.open("C:/Users/Jason/Desktop/C++/ParkingGarage/ParkingGarage/f0.txt");
 		for (int i = 0; i < 10; i++)
@@ -90,8 +80,8 @@ int main()
 
 			if (floor0[i] != 0)
 			{
-				cout << "basement" << ".........." << "parking spot " <<i + 1 << "..........." << status[i] << endl;
-				output << "1st floor" << ".........." << "parking spot " << i + 11 << ".........." << status[i] << endl;
+				cout << "basement" << ".........." << "parking spot " << i + 1 << "..........." << status[i] << endl;
+				output << "basement" << ".........." << "parking spot " << i + 1 << ".........." << status[i] << endl;
 			}
 		}
 		cout << endl;
@@ -234,8 +224,7 @@ int main()
 				output << "7th floor" << ".........." << "parking spot " << i + 61 << "..........." << status[i] << endl;;
 			}
 		}
-
- 		seconds = counter;
+		seconds = counter;
 		cout << "year : month :day :minute: second" << endl; // send to screen
 		output << "year : month :day :minute: second" << endl; // send to text file
 		cout << year << " : ";
@@ -244,6 +233,11 @@ int main()
 		cout << minute << " : ";
 		cout << seconds << endl;
 		counter++;
-	}// whileloop ends
-}
 
+		Sleep(3000);
+		system("cls"); // clear the screen 
+
+		output.close();
+	}// whileloop ends
+
+}
