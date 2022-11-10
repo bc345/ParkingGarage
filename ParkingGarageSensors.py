@@ -107,16 +107,16 @@ while True:
    
     while (i<=184):
       if Floor1[i]<5:
-        Floor1[i]=int(1)
+        Floor1[i]=int(0)
         print("wow")
       else:
-        Floor1[i]=int(0)
+        Floor1[i]=int(1)
   
 
       i=i+1
-    a_file = open("randomfile1.txt", "w")
+    a_file = open("f0.txt", "w")
     Filearray1=str(Floor1)
     a_file.write(Filearray1)
     a_file.close()
-    a_file = open("randomfile1.txt", "r")
+    a_file = open("f0.txt", "r")
     content = a_file.read()
