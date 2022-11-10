@@ -1,0 +1,98 @@
+/* 
+	ECET 400 
+	Senior Project
+	Karrie Neurauter 
+	Oct 6, 2022
+*/
+
+div {
+	border: 1px solid #800;
+	width: auto;
+	margin: auto;
+}
+
+html {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+
+nav {margin: 0px;}
+
+nav ul li {
+	background-color: #800;	
+	display: block;
+	float: left;
+	text-align: center;
+	width: 33.33%;	
+	padding: 0px;
+	
+}
+
+nav ul li a {
+	color: white;	
+	display: block;
+	height: 2.5em;	
+	text-align: center;
+	line-height: 2.5em;	
+}
+
+nav::after {
+	display: table;
+	clear: both;
+	content: "";
+}
+
+
+div[class="list-group-item-title"] {
+	background-color: #ddd;
+}
+
+.list-group-item{background-color: white;}
+
+div[class^="list-"] {
+	/* float: left; */
+	box-sizing: block; 
+
+}
+
+h3 {
+	text-align: center;
+
+}
+
+header {
+	background-color: #800;
+	color: white;
+	width: 100%;
+	text-align: center;
+}	
+
+footer{
+	display: block;
+	top: 15px;
+	clear: both;
+	background-color: #800;
+	color: white;
+	text-align: center;
+}
+
+.list-group {
+	clear: both;
+	width: auto;
+	padding: 50px;
+	margin: auto;
+}
+
+.list-group::after {
+	
+	content: "";
+	display: table;
+}
+
+body {
+	margin: auto;
+}
+.list-group-item li {
+	margin: 10px 10px 10px 10px;
+	font-size: 1.5em;
+}
