@@ -1,7 +1,8 @@
 import numpy as np
 import array as arr
 import random as random
-Floor1=np.empty([185])
+Floor1=np.empty([10])
+distanceChecker=([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 #Libraries
 import RPi.GPIO as GPIO
 import time
@@ -44,7 +45,7 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    Floor1[0] = distance
+    #Floor1[0] = distance
     print ("Sensor 1 Distance:", distance, "cm")
     time.sleep(1)
     
@@ -54,6 +55,7 @@ while True:
     elif (distance > 183):
         print("Parking spot is available \n")
         time.sleep(0.01)
+        distanceChecker[0]=distance
     #These if statements determine the range, value of 183 is used because approx 183cm is in 6ft.
     
     #Sensor 2:
@@ -70,7 +72,7 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    Floor1[1] = distance
+    #Floor1[1] = distance
     print ("Sensor 2 Distance:", distance, "cm")
     time.sleep(1)
     
@@ -80,7 +82,7 @@ while True:
     elif (distance > 183):
         print("Parking spot is available \n")
         time.sleep(0.01)
-    
+        distanceChecker[1]=distance
     #Sensor 3:
     GPIO.output(PIN_TRIGGER3, GPIO.LOW)
     print ("Waiting for sensor 3 to settle")
@@ -104,19 +106,22 @@ while True:
     elif (distance > 183):
         print("Parking spot is available \n")
         time.sleep(0.01)
-   
-    while (i<=184):
-      if Floor1[i]<5:
-        Floor1[i]=int(0)
-        print("wow")
-      else:
-        Floor1[i]=int(1)
-  
+        distanceChecker[2]=distance
+    while (i<=9):
+        if distanceChecker[i]<180:
+            Floor1[i]=int(1)
+        if distanceChecker[i] == 0:
+            Floor1[i]=int(0)
+            print("wow")
+        #else:
+            #Floor1[i]=0
 
-      i=i+1
+
+        i=i+1
     a_file = open("f0.txt", "w")
     Filearray1=str(Floor1)
     a_file.write(Filearray1)
     a_file.close()
     a_file = open("f0.txt", "r")
     content = a_file.read()
+
