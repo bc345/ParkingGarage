@@ -1,0 +1,75 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+#include <stdio.h>      /* printf, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>   
+//#include <windows.h> // contain a delay
+using namespace std;
+//enum type {empty, electric, handicapped};
+
+int main()
+
+{
+	int randy = 0;
+	int Basement[10];
+	int floor1[10];
+	int floor2[10];
+	int floor3[10];
+	int floor4[10];
+	int floor5[10];
+	int floor6[10];
+	int i;
+	bool j = true; 
+	ofstream on;
+fstream output;
+	/* time */
+	
+	srand(time(NULL));
+	i = 0;
+	int chance = 0;
+	on.open("f1.txt");
+	on.open("f2.txt");
+	on.open("f3.txt");
+	on.open("f4.txt");
+	on.open("f5.txt");
+	on.open("f6.txt");
+	on.open("f0.txt");
+	while (j)
+	{
+		output.open("f0.txt");
+		
+
+		randy = randy++;
+		while (i <= 9)
+		{
+			Basement[i] = rand() % 3 + 0;
+			chance = rand() % 1 + 0;
+			if (Basement[i] == 0)
+			{
+				chance = rand() % 1 + 0;
+				if (chance == 0)
+				{
+					Basement[i] = rand() % 1 + 3;
+			  }
+		  }
+
+			cout << Basement[i] << endl;
+			output << Basement[i] << " ";
+			i = i + 1;
+		}
+		srand(randy);
+
+
+		i = 0;
+		system("cls");
+		
+		output.close();
+
+
+	}
+	
+
+	return 0;
+}
