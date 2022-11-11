@@ -55,7 +55,7 @@ while True:
     elif (distance > 183):
         print("Parking spot is available \n")
         time.sleep(0.01)
-        distanceChecker[0]=distance
+    distanceChecker[0]=distance
     #These if statements determine the range, value of 183 is used because approx 183cm is in 6ft.
     
     #Sensor 2:
@@ -82,7 +82,8 @@ while True:
     elif (distance > 183):
         print("Parking spot is available \n")
         time.sleep(0.01)
-        distanceChecker[1]=distance
+    distanceChecker[1]=distance
+    print( distanceChecker[1])
     #Sensor 3:
     GPIO.output(PIN_TRIGGER3, GPIO.LOW)
     print ("Waiting for sensor 3 to settle")
@@ -99,6 +100,7 @@ while True:
     distance = round(pulse_duration * 17150, 2)
     print ("Sensor 3 Distance:", distance, "cm")
     time.sleep(1)
+    distanceChecker[2]=distance
 
     if (distance <= 183):
         print("Parking spot is full \n")                                                                                                                                                                           
@@ -106,16 +108,20 @@ while True:
     elif (distance > 183):
         print("Parking spot is available \n")
         time.sleep(0.01)
-        distanceChecker[2]=distance
+        
+    print(distanceChecker[1] )
+    i=0
     while (i<=9):
-        if distanceChecker[i]<180:
-            Floor1[i]=int(1)
-        if distanceChecker[i] == 0:
+        
+        distanceChecker[i];
+        if distanceChecker[i]>0 and distanceChecker[i]>80:
+           Floor1[i]=int(1)
+        else:
             Floor1[i]=int(0)
-            print("wow")
+        print("wow")
         #else:
             #Floor1[i]=0
-
+        print(Floor1[i])
 
         i=i+1
     a_file = open("f0.txt", "w")
