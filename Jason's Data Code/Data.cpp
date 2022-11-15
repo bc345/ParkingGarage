@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <unistd.h>
 //#include <windows.h> // contain a delay
 using namespace std;
 //enum type {empty, electric, handicapped};
@@ -9,13 +10,13 @@ using namespace std;
 int main()
 {
 	int floor0[10], floor1[10], floor2[10], floor3[10], floor4[10], floor5[10], floor6[10], floor7[10];
-	int seconds = 0;
-	int minute = 0;
+	//int seconds = 0;
+	//int minute = 0;
 	//int hour = 0;
-	int day = 0;
-	int month = 0;
-	int year = 0;
-	int counter = 0;
+	//int day = 0;
+	//int month = 0;
+	//int year = 0;
+	//int counter = 0;
 	bool flag = true;
 	ifstream level0, level1, level2, level3, level4, level5, level6, level7;
 	ofstream output; //send the data to outfile
@@ -223,17 +224,18 @@ int main()
 				output << "7th floor" << ".........." << "parking spot " << i + 61 << "..........." << status[i] << endl;;
 			}
 		}
-		seconds = counter;
-		cout << "year : month :day :minute: second" << endl; // send to screen
+		//seconds = counter;
+		/*cout << "year : month :day :minute: second" << endl; // send to screen
 		output << "year : month :day :minute: second" << endl; // send to text file
 		cout << year << " : ";
 		cout << month << " : ";
 		cout << day << " : ";
 		cout << minute << " : ";
-		cout << seconds << endl;
-		counter++;
+		cout << seconds << endl;*/
+		//counter++;
 
 		//Sleep(3000);
+		sleep(10);
 		system("cls"); // clear the screen 
 		
 		output.close();
