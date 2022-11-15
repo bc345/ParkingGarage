@@ -1,6 +1,7 @@
 import numpy as np
 import array as arr
 import random as random
+import string 
 Floor1=np.empty([10])
 distanceChecker=([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 #Libraries
@@ -45,7 +46,7 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    #Floor1[0] = distance
+    #commentFloor1[0] = distance
     print ("Sensor 1 Distance:", distance, "cm")
     time.sleep(1)
     
@@ -72,7 +73,7 @@ while True:
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    #Floor1[1] = distance
+    Floor1[1] = distance
     print ("Sensor 2 Distance:", distance, "cm")
     time.sleep(1)
     
@@ -111,13 +112,19 @@ while True:
         
     print(distanceChecker[1] )
     i=0
+
+
     while (i<=9):
         
         distanceChecker[i];
-        if distanceChecker[i]>0 and distanceChecker[i]>80:
+        if distanceChecker[i]>0 and distanceChecker[i]>183:
            Floor1[i]=int(1)
         else:
             Floor1[i]=int(0)
+        if Floor1[1] == 1:
+            Floor1[1] = int(2)
+        if Floor1[2] == 1:
+            Floor1[2] = int(3)
         print("wow")
         #else:
             #Floor1[i]=0
@@ -130,4 +137,19 @@ while True:
     a_file.close()
     a_file = open("f0.txt", "r")
     content = a_file.read()
-
+    print(content)
+    for ele in content:
+        if ele in ".":
+            content = content.replace(ele, "")
+    for ele in content:
+        if ele in "[":
+            content = content.replace(ele, "")
+    for ele in content:
+        if ele in "]":
+            content = content.replace(ele, "")
+    print(content)
+    a_file.close()
+    a_file = open("f0.txt", "w")
+    Filearray1=str(content)
+    a_file.write(Filearray1)
+    a_file.close()
