@@ -7,6 +7,9 @@ distanceChecker=([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 #Libraries
 import RPi.GPIO as GPIO
 import time
+import threading
+
+
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
 #set GPIO Pins
@@ -31,12 +34,12 @@ GPIO.setup(PIN_ECHO2, GPIO.IN)
 GPIO.setup(PIN_TRIGGER3, GPIO.OUT)
 GPIO.setup(PIN_ECHO3, GPIO.IN)
 
-while True:
+def distanceSensor_1():
     #Sensor 1:
     GPIO.output(PIN_TRIGGER1, GPIO.LOW)
-    print ("Waiting for sensor 1 to settle")
+    #print ("Waiting for sensor 1 to settle")
     time.sleep(2)
-    print("Calculating sensor 1 distance")
+    #print("Calculating sensor 1 distance")
     GPIO.output(PIN_TRIGGER1, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(PIN_TRIGGER1,GPIO.LOW)
@@ -51,19 +54,20 @@ while True:
     time.sleep(1)
     
     if (distance <= 183):
-        print("Parking spot is full \n")                                                                                                                                                                           
+        print("Sensor 1 Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Parking spot is available \n")
+        print("Sensor 1 Parking spot is available \n")
         time.sleep(0.01)
     distanceChecker[0]=distance
     #These if statements determine the range, value of 183 is used because approx 183cm is in 6ft.
-    
+
+def distanceSensor_2():
     #Sensor 2:
     GPIO.output(PIN_TRIGGER2, GPIO.LOW)
-    print ("Waiting for sensor 2 to settle")
+    #print ("Waiting for sensor 2 to settle")
     time.sleep(2)
-    print("Calculating sensor 2 distance")
+    #print("Calculating sensor 2 distance")
     GPIO.output(PIN_TRIGGER2, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(PIN_TRIGGER2,GPIO.LOW)
@@ -78,18 +82,20 @@ while True:
     time.sleep(1)
     
     if (distance <= 183):
-        print("Parking spot is full \n")                                                                                                                                                                           
+        print("Sensor 2 Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Parking spot is available \n")
+        print("Sensor 2 Parking spot is available \n")
         time.sleep(0.01)
     distanceChecker[1]=distance
-    print( distanceChecker[1])
+    #print( distanceChecker[1]) 
+
+def distanceSensor_3():
     #Sensor 3:
     GPIO.output(PIN_TRIGGER3, GPIO.LOW)
-    print ("Waiting for sensor 3 to settle")
+    #print ("Waiting for sensor 3 to settle")
     time.sleep(2)
-    print("Calculating sensor 3 distance")
+    #print("Calculating sensor 3 distance")
     GPIO.output(PIN_TRIGGER3, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(PIN_TRIGGER3,GPIO.LOW)
@@ -101,19 +107,33 @@ while True:
     distance = round(pulse_duration * 17150, 2)
     print ("Sensor 3 Distance:", distance, "cm")
     time.sleep(1)
-    distanceChecker[2]=distance
+    #distanceChecker[2]=distance
 
     if (distance <= 183):
-        print("Parking spot is full \n")                                                                                                                                                                           
+        print("Sensor 3 Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Parking spot is available \n")
+        print("Sensor 3 Parking spot is available \n")
         time.sleep(0.01)
         
-    print(distanceChecker[1] )
+    print(distanceChecker[1])
+
+
+def refreshThread():
+    d1 = threading.Thread(target=distanceSensor_1, args=())
+    d2 = threading.Thread(target=distanceSensor_2, args=())
+    d3 = threading.Thread(target=distanceSensor_3, args=())
+
+    d1.start()
+    d2.start()
+    d3.start()
+
+while True:
+    d = threading.Thread(target=refreshThread, args=())
+    d.start()
+    d.join()
+
     i=0
-
-
     while (i<=9):
         
         distanceChecker[i];
@@ -125,19 +145,19 @@ while True:
             Floor1[1] = int(2)
         if Floor1[2] == 1:
             Floor1[2] = int(3)
-        print("wow")
+        #print("wow")
         #else:
             #Floor1[i]=0
-        print(Floor1[i])
+        #print(Floor1[i])
 
         i=i+1
-    a_file = open("f0.txt", "w")
+    a_file = open("/home/pi/projects/f0.txt", "w")
     Filearray1=str(Floor1)
     a_file.write(Filearray1)
     a_file.close()
-    a_file = open("f0.txt", "r")
+    a_file = open("/home/pi/projects/f0.txt", "r")
     content = a_file.read()
-    print(content)
+    #print(content)
     for ele in content:
         if ele in ".":
             content = content.replace(ele, "")
@@ -149,7 +169,8 @@ while True:
             content = content.replace(ele, "")
     print(content)
     a_file.close()
-    a_file = open("f0.txt", "w")
+    a_file = open("/home/pi/projects/f0.txt", "w")
     Filearray1=str(content)
     a_file.write(Filearray1)
     a_file.close()
+    time.sleep(3)
