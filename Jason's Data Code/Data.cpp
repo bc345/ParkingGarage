@@ -234,9 +234,11 @@ int main()
 		cout << seconds << endl;*/
 		//counter++;
 
+				
+
 		//Sleep(3000);
 		sleep(10);
-		system("cls"); // clear the screen 
+		//system("cls"); // clear the screen 
 		
 		output.close();
 	}// whileloop ends
