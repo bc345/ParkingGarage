@@ -50,14 +50,15 @@ def distanceSensor_1():
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
     #commentFloor1[0] = distance
-    print ("Sensor 1 Distance:", distance, "cm")
+    printThis = "Sensor 1 Distance in cm is: "+str(distance)
+    print (printThis)
     time.sleep(1)
     
     if (distance <= 183):
-        print("Sensor 1 Parking spot is full \n")                                                                                                                                                                           
+        #print("Sensor 1 Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Sensor 1 Parking spot is available \n")
+        #print("Sensor 1 Parking spot is available \n")
         time.sleep(0.01)
     distanceChecker[0]=distance
     #These if statements determine the range, value of 183 is used because approx 183cm is in 6ft.
@@ -78,14 +79,15 @@ def distanceSensor_2():
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
     Floor1[1] = distance
-    print ("Sensor 2 Distance:", distance, "cm")
+    printThis = "Sensor 2 Distance in cm is: "+str(distance)
+    print (printThis)
     time.sleep(1)
     
     if (distance <= 183):
-        print("Sensor 2 Parking spot is full \n")                                                                                                                                                                           
+        #print("Sensor 2 Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Sensor 2 Parking spot is available \n")
+        #print("Sensor 2 Parking spot is available \n")
         time.sleep(0.01)
     distanceChecker[1]=distance
     #print( distanceChecker[1]) 
@@ -105,18 +107,19 @@ def distanceSensor_3():
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    print ("Sensor 3 Distance:", distance, "cm")
+    printThis = "Sensor 3 Distance in cm is: "+str(distance)
+    print (printThis)
     time.sleep(1)
-    #distanceChecker[2]=distance
+    distanceChecker[2]=distance
 
     if (distance <= 183):
-        print("Sensor 3 Parking spot is full \n")                                                                                                                                                                           
+        #print("Sensor 3 Parking spot is full \n")                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
-        print("Sensor 3 Parking spot is available \n")
+        #print("Sensor 3 Parking spot is available \n")
         time.sleep(0.01)
         
-    print(distanceChecker[1])
+    #print(distanceChecker[2])
 
 
 def refreshThread():
@@ -173,4 +176,4 @@ while True:
     Filearray1=str(content)
     a_file.write(Filearray1)
     a_file.close()
-    time.sleep(3)
+    time.sleep(0.1)
