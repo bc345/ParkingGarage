@@ -2,6 +2,8 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <windows.h>
+#include <string>
 #include <stdio.h>      /* printf, NULL */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>   
@@ -10,66 +12,138 @@ using namespace std;
 //enum type {empty, electric, handicapped};
 
 int main()
-
 {
-	int randy = 0;
-	int Basement[10];
-	int floor1[10];
-	int floor2[10];
-	int floor3[10];
-	int floor4[10];
-	int floor5[10];
-	int floor6[10];
-	int i;
-	bool j = true; 
-	ofstream on;
-fstream output;
-	/* time */
-	
-	srand(time(NULL));
-	i = 0;
-	int chance = 0;
-	on.open("f1.txt");
-	on.open("f2.txt");
-	on.open("f3.txt");
-	on.open("f4.txt");
-	on.open("f5.txt");
-	on.open("f6.txt");
-	on.open("f0.txt");
-	while (j)
-	{
-		output.open("f0.txt");
-		
 
-		randy = randy++;
-		while (i <= 9)
+	int floor0[10], floor1[10], floor2[10], floor3[10], floor4[10], floor5[10], floor6[10], floor7[10];
+	//int seconds = 0;
+	//int minute = 0;
+	//int hour = 0;
+	//int day = 0;
+	//int month = 0;
+	//int year = 0;
+	//int counter = 0;
+	bool flag = true;
+	int chance;
+	ifstream level0, level1, level2, level3, level4, level5, level6, level7;
+	ofstream output, output1, output2, output3, output4, output5, output6; //send the data to outfile
+
+
+	while (flag)
+	{
+		output.open("output.txt");
+		output1.open("output1.txt");
+		output2.open("output2.txt");
+		output3.open("output3.txt");
+		output4.open("output4.txt");
+		output5.open("output5.txt");
+		output6.open("output6.txt");
+		for (int i = 0; i < 10; i++)
 		{
-			Basement[i] = rand() % 3 + 0;
-			chance = rand() % 1 + 0;
-			if (Basement[i] == 0)
+			floor0[i] = rand() % 3 + 0;
+			if (floor0[i] == 0)
 			{
 				chance = rand() % 1 + 0;
 				if (chance == 0)
 				{
-					Basement[i] = rand() % 1 + 3;
-			  }
-		  }
+					floor0[i] = rand() % 1 + 3;
+				}
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				cout << floor0[i] << " ";
+				output << floor0[i] << " ";
 
-			cout << Basement[i] << endl;
-			output << Basement[i] << " ";
-			i = i + 1;
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				floor1[i] = rand() % 3 + 0;
+				if (floor1[i] == 0)
+				{
+					chance = rand() % 1 + 0;
+					if (chance == 0)
+					{
+						floor1[i] = rand() % 1 + 3;
+					}
+				}
+				for (int i = 0; i < 10; i++)
+				{
+					cout << floor1[i] << " ";
+					output1 << floor1[i] << " ";
+
+				}
+				for (int i = 0; i < 10; i++)
+				{
+					floor2[i] = rand() % 3 + 0;
+					if (floor2[i] == 0)
+					{
+						chance = rand() % 1 + 0;
+						if (chance == 0)
+						{
+							floor2[i] = rand() % 1 + 3;
+						}
+					}
+				}
+				for (int i = 0; i < 10; i++)
+					{
+						cout << floor2[i] << " ";
+						output2 << floor2[i] << " ";
+
+					}
+					for (int i = 0; i < 10; i++)
+					{
+						floor3[i] = rand() % 3 + 0;
+						if (floor3[i] == 0)
+						{
+							chance = rand() % 1 + 0;
+							if (chance == 0)
+							{
+								floor3[i] = rand() % 1 + 3;
+							}
+						}
+						for (int i = 0; i < 10; i++)
+						{
+							cout << floor1[i] << " ";
+							output3 << floor3[i] << " ";
+
+						}
+					}
+					for (int i = 0; i < 10; i++)
+					{
+						floor4[i] = rand() % 3 + 0;
+						if (floor4[i] == 0)
+						{
+							chance = rand() % 1 + 0;
+							if (chance == 0)
+							{
+								floor4[i] = rand() % 1 + 3;
+							}
+						}
+						for (int i = 0; i < 10; i++)
+						{
+							cout << floor4[i] << " ";
+							output4 << floor4[i] << " ";
+
+						}
+					}
+				output << endl;
+				output1 << endl;
+				output2 << endl;
+				output3<< endl;
+				output4 << endl;
+				output5 << endl;
+				output6 << endl;
+
+
+				system("cls"); // clear the screen 
+				output.close();
+				output1.close();
+				output2.close();
+				output3.close();
+				output4.close();
+				output5.close();
+				output6.close();
+			}// whileloop ends
 		}
-		srand(randy);
-
-
-		i = 0;
-		system("cls");
-		
-		output.close();
-
-
 	}
-	
 
-	return 0;
 }
