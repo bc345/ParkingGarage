@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!--
+	ECET 400  - Senior Project
+	Main Website
+
+	Author:  Karrie Neurauter
+	Date:   October 6, 2022
+
+	Filename: MainSite.html
+	-->
+	<meta charset="utf-8" />
+	<title>NJIT Parking Garage Available Spaces</title>
+	<link href="/static/mainsite.css" type="text/css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<header>
+		<h2>Smart Parking Garage IoT System</h2>
+			<nav>
+		<ul>
+			<li><a href="/general">General</a></li>
+			<li><a href="/handicap">Handicap</a></li>
+			<li><a href="/electric">Electric</a></li>
+		</ul>
+	</nav>
+	</header>
+
+
+
+
+	<!-- General Parking Spaces Available -->
+	<div class="list-group"> <!-- Make box to contain general parking spaces titles and information-->
+
+		<div class="list-group-item-title"> <!-- Make box for title -->
+			<h3>Available {{title}} Parking </h3>
+			<img src="/static/1st_floor_parking.png " alt="parking map">
+			<div class="list-group-item"> <!-- Make box for data -->
+				<ul>{% for i in variable1 %}
+				<li><a id="profile" href="/templates/1st_floor_parking.png "> {{i}} </a></li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<div>
+		<footer>NJIT Smart Parking IoT System</footer>
+	</div>
+
+</body>
+
+
+
+</html> 
