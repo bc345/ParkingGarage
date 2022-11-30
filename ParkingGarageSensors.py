@@ -151,8 +151,8 @@ while True:
     d.join()
 
     with open(firstFloorFile, 'w') as file:
-        print(str(distanceChecker[0])+" "+str(distanceChecker[1])+" "+str(distanceChecker[2])+" "+str(distanceChecker[3])+" "+"0"+" "+"0"+" "+"0"+" "+"0")
-        file.write(str(distanceChecker[0])+" "+str(distanceChecker[1])+" "+str(distanceChecker[2])+" "+str(distanceChecker[3])+" "+"0"+" "+"0"+" "+"0"+" "+"0")
+        print(str(distanceChecker[0])+" "+str(distanceChecker[1])+" "+str(distanceChecker[2])+" "+str(distanceChecker[3])+" "+"0"+" "+"0"+" "+"0"+" "+"0"+" "+"0"+" "+"0")
+        file.write(str(distanceChecker[0])+" "+str(distanceChecker[1])+" "+str(distanceChecker[2])+" "+str(distanceChecker[3])+" "+"0"+" "+"0"+" "+"0"+" "+"0"+" "+"0"+" "+"0")
         file.flush()
 
 
