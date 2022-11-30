@@ -8,20 +8,19 @@ distanceChecker=([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 import RPi.GPIO as GPIO
 import time
 import threading
-
-
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
 #set GPIO Pins
+#Trigger and Echo for Sensor 1
 PIN_TRIGGER1 = 18
 PIN_ECHO1 = 23
-#Trigger and Echo for Sensor 1
+#Trigger and Echo for Sensor 2
 PIN_TRIGGER2 = 25
 PIN_ECHO2 = 24
-#Trigger and Echo for Sensor 2
+#Trigger and Echo for Sensor 3
 PIN_TRIGGER3 = 6
 PIN_ECHO3 = 5
-#Trigger and Echo for Sensor 3
+
 i=0
 GPIO.setwarnings(False)
 #set GPIO direction (IN / OUT)
@@ -33,6 +32,7 @@ GPIO.setup(PIN_ECHO2, GPIO.IN)
 
 GPIO.setup(PIN_TRIGGER3, GPIO.OUT)
 GPIO.setup(PIN_ECHO3, GPIO.IN)
+
 
 def distanceSensor_1():
     #Sensor 1:
@@ -50,17 +50,19 @@ def distanceSensor_1():
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
     #commentFloor1[0] = distance
-    printThis = "Sensor 1 Distance in cm is: "+str(distance)
+    printThis = "\n"+"Sensor 1 Distance in cm is: "+str(distance)
     print (printThis)
     time.sleep(1)
     
     if (distance <= 183):
-        #print("Sensor 1 Parking spot is full \n")                                                                                                                                                                           
+        #print("Sensor 1 Parking spot is full \n")
+        distanceChecker[0] = 0                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
         #print("Sensor 1 Parking spot is available \n")
+        distanceChecker[0] = 1
         time.sleep(0.01)
-    distanceChecker[0]=distance
+    
     #These if statements determine the range, value of 183 is used because approx 183cm is in 6ft.
 
 def distanceSensor_2():
@@ -78,18 +80,20 @@ def distanceSensor_2():
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    Floor1[1] = distance
-    printThis = "Sensor 2 Distance in cm is: "+str(distance)
+    #Floor1[1] = distance
+    printThis = "\n"+"Sensor 2 Distance in cm is: "+str(distance)
     print (printThis)
     time.sleep(1)
     
     if (distance <= 183):
-        #print("Sensor 2 Parking spot is full \n")                                                                                                                                                                           
+        #print("Sensor 2 Parking spot is full \n")
+        distanceChecker[1] = 0                                                                                                                                                                           
         time.sleep(0.01)
     elif (distance > 183):
         #print("Sensor 2 Parking spot is available \n")
+        distanceChecker[1] = 3
         time.sleep(0.01)
-    distanceChecker[1]=distance
+    #distanceChecker[1]=distance
     #print( distanceChecker[1]) 
 
 def distanceSensor_3():
@@ -107,73 +111,52 @@ def distanceSensor_3():
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    printThis = "Sensor 3 Distance in cm is: "+str(distance)
+    printThis = "\n"+"Sensor 3 Distance in cm is: "+str(distance)
     print (printThis)
     time.sleep(1)
-    distanceChecker[2]=distance
+    #distanceChecker[2]=distance
 
     if (distance <= 183):
-        #print("Sensor 3 Parking spot is full \n")                                                                                                                                                                           
+        #print("Sensor 3 Parking spot is full \n")
+        distanceChecker[2] = 0                                                                                                                                                                            
         time.sleep(0.01)
     elif (distance > 183):
         #print("Sensor 3 Parking spot is available \n")
+        distanceChecker[2] = 2
         time.sleep(0.01)
         
     #print(distanceChecker[2])
 
+    
 
+    
 def refreshThread():
     d1 = threading.Thread(target=distanceSensor_1, args=())
     d2 = threading.Thread(target=distanceSensor_2, args=())
     d3 = threading.Thread(target=distanceSensor_3, args=())
 
+
     d1.start()
     d2.start()
     d3.start()
+    d1.join()
+    d2.join()
+    d3.join()
+    
+firstFloorFile = "/home/pi/projects/f0.txt"
 
 while True:
     d = threading.Thread(target=refreshThread, args=())
     d.start()
     d.join()
 
-    i=0
-    while (i<=9):
-        
-        distanceChecker[i];
-        if distanceChecker[i]>0 and distanceChecker[i]>183:
-           Floor1[i]=int(1)
-        else:
-            Floor1[i]=int(0)
-        if Floor1[1] == 1:
-            Floor1[1] = int(2)
-        if Floor1[2] == 1:
-            Floor1[2] = int(3)
-        #print("wow")
-        #else:
-            #Floor1[i]=0
-        #print(Floor1[i])
+    with open(firstFloorFile, 'w') as file:
+        print(str(distanceChecker[0])+" "+str(distanceChecker[1])+" "+str(distanceChecker[2])+" "+str(distanceChecker[3])+" "+"0"+" "+"0"+" "+"0"+" "+"0")
+        file.write(str(distanceChecker[0])+" "+str(distanceChecker[1])+" "+str(distanceChecker[2])+" "+str(distanceChecker[3])+" "+"0"+" "+"0"+" "+"0"+" "+"0")
+        file.flush()
 
-        i=i+1
-    a_file = open("/home/pi/projects/f0.txt", "w")
-    Filearray1=str(Floor1)
-    a_file.write(Filearray1)
-    a_file.close()
-    a_file = open("/home/pi/projects/f0.txt", "r")
-    content = a_file.read()
-    #print(content)
-    for ele in content:
-        if ele in ".":
-            content = content.replace(ele, "")
-    for ele in content:
-        if ele in "[":
-            content = content.replace(ele, "")
-    for ele in content:
-        if ele in "]":
-            content = content.replace(ele, "")
-    print(content)
-    a_file.close()
-    a_file = open("/home/pi/projects/f0.txt", "w")
-    Filearray1=str(content)
-    a_file.write(Filearray1)
-    a_file.close()
+
     time.sleep(0.1)
+
+
+
