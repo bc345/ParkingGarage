@@ -12,7 +12,7 @@ using namespace std;
 //enum type {empty, electric, handicapped};
 int main()
 {
-	int floor0[10] = { 0 }, floor1[10] = { 0 }, floor2[10] = { 0 }, floor3[10] = { 0 }, floor4[10] = { 0 }, floor5[10] = { 0 }, floor6[10] = { 0 }, floor7[10] = { 0 };
+	int floor0[220] = { 0 }, floor1[220] = { 0 }, floor2[220] = { 0 }, floor3[220] = { 0 }, floor4[220] = { 0 }, floor5[220] = { 0 }, floor6[220] = { 0 }, floor7[220] = { 0 };
 	//int seconds = 0;
 	//int minute = 0;
 	//int hour = 0;
@@ -34,7 +34,10 @@ int main()
 		output5.open("f5.txt");
 		output6.open("f6.txt");
 		output7.open("f7.txt");
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 205; i++)
+		{ 
+
+		for (int i = 0; i < 205; i++)
 		{
 			floor0[i] = rand() % 3 + 0;
 			if (floor0[i] == 0)
@@ -45,11 +48,14 @@ int main()
 					floor0[i] = rand() % 1 + 3;
 				}
 			}
-			for (int i = 0; i < 10; i++)
+		}
+			for (int i = 0; i < 205; i++)
 			{
 				output << floor0[i] << " ";
+				cout << floor0[i] << " ";
+
 			}
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 205; i++)
 			{
 				floor1[i] = rand() % 3 + 0;
 				if (floor1[i] == 0)
@@ -60,12 +66,13 @@ int main()
 						floor1[i] = rand() % 1 + 3;
 					}
 				}
-				for (int i = 0; i < 10; i++)
+			}
+				for (int i = 0; i < 205; i++)
 				{
 					output1 << floor1[i] << " ";
 
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					floor2[i] = rand() % 3 + 0;
 					if (floor2[i] == 0)
@@ -77,13 +84,15 @@ int main()
 						}
 					}
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					output2 << floor2[i] << " ";
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
+
 					floor3[i] = rand() % 3 + 0;
+
 					if (floor3[i] == 0)
 					{
 						chance = rand() % 1 + 0;
@@ -93,27 +102,30 @@ int main()
 						}
 					}
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					output3 << floor3[i] << " ";
 				}
 
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
+					floor4[i] = rand() % 3 + 0;
 					if (floor4[i] == 0)
 					{
 						chance = rand() % 1 + 0;
 						if (chance == 0)
 						{
-							floor4[i] = rand() % 1 + 3;
+							floor4[i] = rand() % 3+0;
 						}
 					}
+
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					output4 << floor4[i] << " ";
+
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					floor5[i] = rand() % 3 + 0;
 					if (floor5[i] == 0)
@@ -125,11 +137,11 @@ int main()
 						}
 					}
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					output5 << floor5[i] << " ";
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					floor6[i] = rand() % 3 + 0;
 					if (floor6[i] == 0)
@@ -137,12 +149,11 @@ int main()
 						floor6[i] = rand() % 4;
 					}
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					output6 << floor6[i] << " ";
-					cout << floor6[i];
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					floor7[i] = rand() % 3 + 0;
 					if (floor7[i] == 0)
@@ -154,11 +165,10 @@ int main()
 						}
 					}
 				}
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 205; i++)
 				{
 					output7 << floor7[i] << " ";
 				}
-				cout << chance<<" ";
 				output << endl;
 				output1 << endl;
 				output2 << endl;
@@ -178,6 +188,4 @@ int main()
 
 			}// whileloop ends
 		}
-	}
-
-}
+		}
